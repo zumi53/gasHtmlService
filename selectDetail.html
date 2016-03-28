@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      // Prevent forms from submitting.
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+      window.addEventListener('load', preventFormSubmit);
+
+      function handleFormSubmit(formObject) {
+        google.script.run.processForm(formObject);
+      }
+    </script>
+  </head>
+  <body>
+    <form id="myForm" onsubmit="handleFormSubmit(this)">
+      <input name="cb" type="checkbox" value="残業が少ない">残業が少ない
+      <input name="cb" type="checkbox" value="交通費全額">交通費全額
+      <input name="cb" type="checkbox" value="家賃補助">家賃補助
+      <input name="other" type="input">その他
+      <input type="submit" value="Submit" />
+    </form>
+    <div id="output"></div>
+ </body>
+</html>
